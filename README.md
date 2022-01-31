@@ -1,6 +1,6 @@
 # SWCCourseDirectory
 
-# This website is temporary hosted at <a href="https://swccoursedirectory.herokuapp.com/coursedirectory"> https://swccoursedirectory.herokuapp.com/coursedirectory
+#3 This website is temporary hosted at <a href="https://swc.iitg.ac.in/coursedirectory"> https://swc.iitg.ac.in/coursedirectory
 
 # User Pages
 
