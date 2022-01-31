@@ -1,6 +1,6 @@
 # SWC Course Directory
 
-#3 This website is temporary hosted at <a href="https://swc.iitg.ac.in/coursedirectory"> https://swc.iitg.ac.in/coursedirectory
+#3 This website is hosted at <a href="https://swc.iitg.ac.in/coursedirectory"> https://swc.iitg.ac.in/coursedirectory
 
 # User Pages
 
