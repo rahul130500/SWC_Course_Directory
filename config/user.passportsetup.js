@@ -1,15 +1,8 @@
 const passport = require("passport");
 const WindowsLiveStrategy = require("passport-azure-ad-oauth2").Strategy;
-const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET } = process.env;
+const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET, BASEURL } = process.env;
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-
-let port = process.env.PORT;
-let auth =
-  "https://swccoursedirectory.herokuapp.com/coursedirectory/auth/outlook/redirect";
-if (port == null || port == "") {
-  auth = "http://localhost:3000/coursedirectory/auth/outlook/redirect";
-}
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -27,7 +20,7 @@ passport.use(
       // options for outlook strategy
       clientID: OUTLOOK_CLIENT_ID,
       clientSecret: OUTLOOK_CLIENT_SECRET,
-      callbackURL: auth,
+      callbackURL: `${BASEURL}/auth/outlook/redirect`,
     },
     async (accessToken, refresh_token, params, profile, done) => {
       try {
@@ -41,7 +34,6 @@ passport.use(
           outlookId: waadProfile.oid,
           username: waadProfile.name,
           accessToken: accessToken,
-          // isverified: true,
         });
         if (refresh_token) newUser.refreshToken = refresh_token;
 

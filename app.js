@@ -15,6 +15,7 @@ const flash = require("connect-flash");
 
 const urlcloud = MONGO_URL;
 const urllocal = "mongodb://localhost:27017/swccoursedirectory";
+const DBURL = process.env.DBURL;
 
 const passportSetup = require("./config/user.passportsetup");
 const middleware = require("./middleware/index");
@@ -30,12 +31,10 @@ const professorRoutes = require("./routes/professor.routes");
 
 //Database Connection
 mongoose.connect(
-  urlcloud,
+  DBURL,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
   },
   (err) => {
     if (err) console.log(err.message);
@@ -97,5 +96,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, function () {
-  console.log("Server started Successfully");
+  console.log(`Server is running on port ${port}`);
 });

@@ -1,5 +1,6 @@
 const Course = require("../models/course");
 const Professor = require("../models/professor");
+const User = require("../models/user");
 
 exports.getCourses = async (req, res) => {
   try {
@@ -65,6 +66,11 @@ exports.postAddCourse = async (req, res) => {
     semester = req.body.semester;
     professorEmail = req.user.email;
     moderatorEmail = req.body.moderator;
+    const moder = await User.findOne({ email: moderatorEmail });
+    console.log(moder);
+    if (moder.isAdmin == false) {
+      await User.findOneAndUpdate({ email: moderatorEmail }, { isAdmin: true });
+    }
 
     const courses = await Course.find({ course_id: course_id });
     if (courses.length != 0) {
